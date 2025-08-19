@@ -18,6 +18,11 @@ form {
     align-items: center;
 }
 form > label {
+    font-size: 22px;
+}
+form > input {
+    font-size: 22px;
+    text-indent: 5px;
 }
 #omdb-credit {
 
