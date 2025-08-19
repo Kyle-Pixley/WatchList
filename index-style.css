@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#banner {
+    color: green;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form > label {
+}
+#omdb-credit {
+
+}
+#omdb-credit-link {
+
+}
