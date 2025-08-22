@@ -16,13 +16,21 @@ const $ = (sel) => {
 function isOmdbOk(x) {
     return x.Response === "True";
 }
+const searchMovie = $('#search');
+let movie = searchMovie.value;
+const form = $('#search-form');
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log(searchMovie, 'movie search');
+});
 const movieTitle = $('#title');
 const movieYear = $('#year');
 const movieRated = $('#rated');
 const moviePlot = $("#plot");
+const moviePoster = $("#poster");
 function fetchMovie() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch("http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers");
+        const response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
         if (!response.ok) {
             throw new Error(`http error: ${response.status}`);
         }
@@ -40,6 +48,7 @@ fetchMovie()
     movieYear ? movieYear.textContent = movie.Year : null;
     movieRated ? movieRated.textContent = movie.Rated : null;
     moviePlot ? moviePlot.textContent = movie.Plot : null;
+    moviePoster ? moviePoster.src = movie.Poster : null;
 })
     .catch(err => {
     console.error("error in fetch", err);

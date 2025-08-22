@@ -51,14 +51,24 @@ function isOmdbOk(x: OmdbResult): x is OmdbOk {
     return x.Response === "True";
 }
 
+
+const searchMovie = $('#search') as HTMLInputElement;
+let movie = searchMovie.value;
+const form = $('#search-form') as HTMLFormElement;
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    console.log(searchMovie,'movie search')
+})
+
+
 const movieTitle = $('#title') as HTMLHeadingElement;
 const movieYear = $('#year') as HTMLHeadingElement;
 const movieRated = $('#rated') as HTMLHeadingElement;
 const moviePlot = $("#plot") as HTMLParagraphElement;
-
+const moviePoster = $("#poster") as HTMLImageElement;
 
 async function fetchMovie(): Promise<Post> {
-    const response = await fetch("http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers");
+    const response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
 
     if(!response.ok) {
         throw new Error(`http error: ${response.status}`);
@@ -80,6 +90,7 @@ fetchMovie()
         movieYear? movieYear.textContent = movie.Year : null;
         movieRated? movieRated.textContent = movie.Rated : null;
         moviePlot? moviePlot.textContent = movie.Plot : null;
+        moviePoster? moviePoster.src = movie.Poster : null;
     })
     .catch(err => {
         console.error("error in fetch" , err)

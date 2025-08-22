@@ -8,13 +8,14 @@
 		<link rel="icon" href="assets/movie-icon.png" type="image/x-icon">
 		<title>Watch List</title>
 	</head>
-	<body class="flex flex-col mt-5 ml-10 border-2 h-screen w-[calc(100vw-5rem)]">
+	<body class="flex flex-col mt-5 ml-10 border-2 h-screen w-[calc(100vw-5rem)] bg-amber-50">
 
 		<header class="flex">
 			<h1 id="banner" class="text-3xl font-bold mr-30">Watch List</h1>
-			<form>
+			<form id="search-form">
 				<label class="" for="search">Search Database</label>
-				<input name="search" type="text" placeholder="Movie Name">
+				<input id="search" type="text" placeholder="Movie Name">
+				<button id="submit" type="submit">Q</button> 
 			</form>
 		</header>
 
@@ -27,8 +28,9 @@
 					<h2 id="year" class="mr-10 text-2xl font-semibold mt-1"></h2>
 			</section>
 			<div id="title-border" class="border-b-3 w-[calc(100vw-5rem)]"></div>
-			<section>
-				<p id="plot"></p>
+			<section class="flex p-5 m-5 justify-center">
+				<p id="plot" class="w-150"></p>
+				<img id="poster" class="w-90 pl-10"></img>
 			</section>
 
 		</main>
