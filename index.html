@@ -4,18 +4,37 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE-edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="index-style.css" >
+		<link rel="stylesheet" href="./dist/styles.css" >
 		<link rel="icon" href="assets/movie-icon.png" type="image/x-icon">
-		<title>Hello</title>
+		<title>Watch List</title>
 	</head>
-	<body>
-		<header>
-			<h1 id="banner">Watch List</h1>
+	<body class="flex flex-col mt-5 ml-10 border-2 h-screen w-[calc(100vw-5rem)]">
+
+		<header class="flex">
+			<h1 id="banner" class="text-3xl font-bold mr-30">Watch List</h1>
+			<form>
+				<label class="" for="search">Search Database</label>
+				<input name="search" type="text" placeholder="Movie Name">
+			</form>
 		</header>
-		<form action=""><label for="search">Search Database</label><input name="search" type="text" placeholder="Movie Name"></form>
+
+		<main class="mt-10">
+			<section id="title-year-section" class="flex w-[calc(100vw-10rem)] align-middle justify-between pl-4">
+				<div class="flex">
+					<h2 id="title" class="mr-5 text-3xl font-bold underline"></h2>
+					<h2 id="rated" class="text-2xl font-semibold mt-2 border border-black rounded px-1 py-0 leading-none"></h2>
+				</div>
+					<h2 id="year" class="mr-10 text-2xl font-semibold mt-1"></h2>
+			</section>
+			<div id="title-border" class="border-b-3 w-[calc(100vw-5rem)]"></div>
+			<section>
+				<p id="plot"></p>
+			</section>
+
+		</main>
 		<footer>
-			<h3 id="omdb-credit">This Application Made With <a href="https://www.omdbapi.com/" id="omdb-credit-link">OMDBapi</a></h3>
+			<h3 id="omdb-credit">This Application Made Using <a href="https://www.omdbapi.com/" id="omdb-credit-link" class="font-bold">OMDBapi</a></h3>
 		</footer>
-		<script src="src/main.js"></script>
+		<script type="module" src="/src/main.js"></script>
 	</body>
 </html>
