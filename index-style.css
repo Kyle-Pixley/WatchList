@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.action-background {
+    background-image: url('/assets/action-background.jpg');
+    background-size: cover;
+}

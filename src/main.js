@@ -23,6 +23,7 @@ form.addEventListener("submit", function (e) {
     e.preventDefault();
     console.log(searchMovie, 'movie search');
 });
+const pageBody = $('body');
 const movieTitle = $('#title');
 const movieYear = $('#year');
 const movieRated = $('#rated');
@@ -44,6 +45,13 @@ function fetchMovie() {
         return data;
     });
 }
+function chooseMovieBackground(mg) {
+    if (mg.includes("Action")) {
+        // pageBody.style.backgroundImage = 'url(../assets/actionBackground.jpg)';
+        // pageBody.style.backgroundSize = 'cover';
+        pageBody.className = 'action-background';
+    }
+}
 //! move to inside form.addEventListener 
 fetchMovie()
     .then(movie => {
@@ -56,6 +64,7 @@ fetchMovie()
     movieDirector ? movieDirector.textContent = movie.Director : null;
     movieWriter ? movieWriter.textContent = movie.Writer : null;
     movieActors ? movieActors.textContent = movie.Actors : null;
+    chooseMovieBackground(movie.Genre);
 })
     .catch(err => {
     console.error("error in fetch", err);

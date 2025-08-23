@@ -61,6 +61,8 @@ form.addEventListener("submit", function(e) {
     
 })
 
+const pageBody = $('body') as HTMLBodyElement;
+
 
 const movieTitle = $('#title') as HTMLHeadingElement;
 const movieYear = $('#year') as HTMLHeadingElement;
@@ -88,6 +90,13 @@ async function fetchMovie(): Promise<Post> {
     return data as Post;
 }
 
+function chooseMovieBackground(mg: string) {
+    if (mg.includes("Action")) {
+        // pageBody.style.backgroundImage = 'url(../assets/actionBackground.jpg)';
+        // pageBody.style.backgroundSize = 'cover';
+        pageBody.className = 'action-background';
+    }
+}
 
 
 //! move to inside form.addEventListener 
@@ -102,6 +111,9 @@ fetchMovie()
             movieDirector? movieDirector.textContent = movie.Director : null;
             movieWriter? movieWriter.textContent = movie.Writer : null;
             movieActors? movieActors.textContent = movie.Actors : null;
+
+            chooseMovieBackground(movie.Genre);
+           
 
         })
         .catch(err => {
