@@ -22,6 +22,18 @@ const form = $('#search-form');
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     console.log(searchMovie, 'movie search');
+    fetchMovie()
+        .then(movie => {
+        console.log("Movie:", movie);
+        movieTitle ? movieTitle.textContent = movie.Title : null;
+        movieYear ? movieYear.textContent = movie.Year : null;
+        movieRated ? movieRated.textContent = movie.Rated : null;
+        moviePlot ? moviePlot.textContent = movie.Plot : null;
+        moviePoster ? moviePoster.src = movie.Poster : null;
+    })
+        .catch(err => {
+        console.error("error in fetch", err);
+    });
 });
 const movieTitle = $('#title');
 const movieYear = $('#year');
@@ -41,17 +53,5 @@ function fetchMovie() {
         return data;
     });
 }
-fetchMovie()
-    .then(movie => {
-    console.log("Movie:", movie);
-    movieTitle ? movieTitle.textContent = movie.Title : null;
-    movieYear ? movieYear.textContent = movie.Year : null;
-    movieRated ? movieRated.textContent = movie.Rated : null;
-    moviePlot ? moviePlot.textContent = movie.Plot : null;
-    moviePoster ? moviePoster.src = movie.Poster : null;
-})
-    .catch(err => {
-    console.error("error in fetch", err);
-});
 export {};
 //# sourceMappingURL=main.js.map
