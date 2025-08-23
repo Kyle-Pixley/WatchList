@@ -58,18 +58,7 @@ const form = $('#search-form') as HTMLFormElement;
 form.addEventListener("submit", function(e) {
     e.preventDefault();
     console.log(searchMovie,'movie search');
-    fetchMovie()
-        .then(movie => {
-            console.log("Movie:", movie);
-            movieTitle? movieTitle.textContent = movie.Title : null;
-            movieYear? movieYear.textContent = movie.Year : null;
-            movieRated? movieRated.textContent = movie.Rated : null;
-            moviePlot? moviePlot.textContent = movie.Plot : null;
-            moviePoster? moviePoster.src = movie.Poster : null;
-        })
-        .catch(err => {
-            console.error("error in fetch" , err)
-        });
+    
 })
 
 
@@ -78,6 +67,10 @@ const movieYear = $('#year') as HTMLHeadingElement;
 const movieRated = $('#rated') as HTMLHeadingElement;
 const moviePlot = $("#plot") as HTMLParagraphElement;
 const moviePoster = $("#poster") as HTMLImageElement;
+const movieDirector = $('#director') as HTMLParagraphElement;
+const movieWriter = $('#writer') as HTMLParagraphElement;
+const movieActors = $('#actors') as HTMLParagraphElement;
+
 
 async function fetchMovie(): Promise<Post> {
     const response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
@@ -95,3 +88,22 @@ async function fetchMovie(): Promise<Post> {
     return data as Post;
 }
 
+
+
+//! move to inside form.addEventListener 
+fetchMovie()
+        .then(movie => {
+            console.log("Movie:", movie);
+            movieTitle? movieTitle.textContent = movie.Title : null;
+            movieYear? movieYear.textContent = movie.Year : null;
+            movieRated? movieRated.textContent = movie.Rated : null;
+            moviePlot? moviePlot.textContent = movie.Plot : null;
+            moviePoster? moviePoster.src = movie.Poster : null;
+            movieDirector? movieDirector.textContent = movie.Director : null;
+            movieWriter? movieWriter.textContent = movie.Writer : null;
+            movieActors? movieActors.textContent = movie.Actors : null;
+
+        })
+        .catch(err => {
+            console.error("error in fetch" , err)
+        });
