@@ -32,9 +32,16 @@ const moviePoster = $("#poster");
 const movieDirector = $('#director');
 const movieWriter = $('#writer');
 const movieActors = $('#actors');
+//movie ratings from array of Rating
+const movieRatingSource1 = $('#rating-source-1');
+const movieRatingSource2 = $('#rating-source-2');
+const movieRatingSource3 = $('#rating-source-3');
+const movieRating1 = $('#rating-1');
+const movieRating2 = $('#rating-2');
+const movieRating3 = $('#rating-3');
 function fetchMovie() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
+        const response = searchMovie.value ? yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`) : yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
         if (!response.ok) {
             throw new Error(`http error: ${response.status}`);
         }
@@ -47,14 +54,13 @@ function fetchMovie() {
 }
 function chooseMovieBackground(mg) {
     if (mg.includes("Action")) {
-        // pageBody.style.backgroundImage = 'url(../assets/actionBackground.jpg)';
-        // pageBody.style.backgroundSize = 'cover';
         pageBody.className = 'action-background';
     }
 }
 //! move to inside form.addEventListener 
 fetchMovie()
     .then(movie => {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
     console.log("Movie:", movie);
     movieTitle ? movieTitle.textContent = movie.Title : null;
     movieYear ? movieYear.textContent = movie.Year : null;
@@ -64,6 +70,12 @@ fetchMovie()
     movieDirector ? movieDirector.textContent = movie.Director : null;
     movieWriter ? movieWriter.textContent = movie.Writer : null;
     movieActors ? movieActors.textContent = movie.Actors : null;
+    movieRatingSource1.textContent = (_b = (_a = movie.Ratings[0]) === null || _a === void 0 ? void 0 : _a.Source) !== null && _b !== void 0 ? _b : "";
+    movieRatingSource2.textContent = (_d = (_c = movie.Ratings[1]) === null || _c === void 0 ? void 0 : _c.Source) !== null && _d !== void 0 ? _d : "";
+    movieRatingSource3.textContent = (_f = (_e = movie.Ratings[2]) === null || _e === void 0 ? void 0 : _e.Source) !== null && _f !== void 0 ? _f : "";
+    movieRating1.textContent = (_h = (_g = movie.Ratings[0]) === null || _g === void 0 ? void 0 : _g.Value) !== null && _h !== void 0 ? _h : "";
+    movieRating2.textContent = (_k = (_j = movie.Ratings[1]) === null || _j === void 0 ? void 0 : _j.Value) !== null && _k !== void 0 ? _k : "";
+    movieRating3.textContent = (_m = (_l = movie.Ratings[2]) === null || _l === void 0 ? void 0 : _l.Value) !== null && _m !== void 0 ? _m : "";
     chooseMovieBackground(movie.Genre);
 })
     .catch(err => {

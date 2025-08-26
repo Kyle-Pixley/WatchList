@@ -73,9 +73,18 @@ const movieDirector = $('#director') as HTMLParagraphElement;
 const movieWriter = $('#writer') as HTMLParagraphElement;
 const movieActors = $('#actors') as HTMLParagraphElement;
 
+//movie ratings from array of Rating
+const movieRatingSource1 = $('#rating-source-1') as HTMLParagraphElement;
+const movieRatingSource2 = $('#rating-source-2') as HTMLParagraphElement;
+const movieRatingSource3 = $('#rating-source-3') as HTMLParagraphElement;
+const movieRating1 = $('#rating-1') as HTMLParagraphElement;
+const movieRating2 = $('#rating-2') as HTMLParagraphElement;
+const movieRating3 = $('#rating-3') as HTMLParagraphElement;
+
 
 async function fetchMovie(): Promise<Post> {
-    const response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
+
+    const response = searchMovie.value ? await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`) : await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
 
     if(!response.ok) {
         throw new Error(`http error: ${response.status}`);
@@ -92,8 +101,6 @@ async function fetchMovie(): Promise<Post> {
 
 function chooseMovieBackground(mg: string) {
     if (mg.includes("Action")) {
-        // pageBody.style.backgroundImage = 'url(../assets/actionBackground.jpg)';
-        // pageBody.style.backgroundSize = 'cover';
         pageBody.className = 'action-background';
     }
 }
@@ -111,6 +118,16 @@ fetchMovie()
             movieDirector? movieDirector.textContent = movie.Director : null;
             movieWriter? movieWriter.textContent = movie.Writer : null;
             movieActors? movieActors.textContent = movie.Actors : null;
+
+
+            movieRatingSource1.textContent = movie.Ratings[0]?.Source ?? "";
+            movieRatingSource2.textContent = movie.Ratings[1]?.Source ?? "";
+            movieRatingSource3.textContent = movie.Ratings[2]?.Source ?? "";
+
+            movieRating1.textContent = movie.Ratings[0]?.Value ?? "";
+            movieRating2.textContent = movie.Ratings[1]?.Value ?? "";
+            movieRating3.textContent = movie.Ratings[2]?.Value ?? "";
+
 
             chooseMovieBackground(movie.Genre);
            
