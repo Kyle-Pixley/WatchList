@@ -30,8 +30,8 @@
 
 			<div id="title-border" class="border-b-3 w-[calc(100vw-5rem)]"></div>
 
-			<section class="flex p-5 m-5 justify-center">
-				<section>
+			<section class="flex p-5 m-5 justify-center bg-amber-50/20">
+				<section class="font-bold">
 					<div class="flex">
 						<p class="mr-2">Directed by:</p><p id="director"></p>
 					</div>
@@ -42,20 +42,24 @@
 						<p class="mr-2">Starring:</p><p id="actors"></p>
 					</div>
 					<p id="plot" class="w-150 indent-8 mt-10"></p>
+
+					<article id="ratings" class="w-fit mt-10">
+						<section class="flex mb-2">
+							<p id="rating-source-1" class="mr-10"></p>
+							<p id="rating-1"></p></section>
+						<section class="flex justify-between mb-2">
+							<p id="rating-source-2" class="mr-3"></p>
+							<p id="rating-2"></p></section>
+						<section class="flex justify-between">
+							<p id="rating-source-3" class="mr-3"></p>
+							<p id="rating-3"></p></section>
+					</article>
+					
 				</section>
+
 				<img id="poster" class="w-90 pl-10"></img>
+
 			</section>
-			<article id="ratings">
-				<section class="flex border-1 w-100">
-					<p id="rating-source-1" class="mr-3"></p>
-					<p id="rating-1"></p></section>
-				<section class="flex border-1 w-100">
-					<p id="rating-source-2" class="mr-3"></p>
-					<p id="rating-2"></p></section>
-				<section class="flex border-1 w-100">
-					<p id="rating-source-3" class="mr-3"></p>
-					<p id="rating-3"></p></section>
-			</article>
 
 		</main>
 		<footer>
