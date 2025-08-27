@@ -101,7 +101,7 @@ async function fetchMovie(): Promise<Post> {
 
 function chooseMovieBackground(mg: string) {
     if (mg.includes("Action")) {
-        pageBody.className = 'action-background';
+        pageBody.classList.add("action-background");
     }
 }
 

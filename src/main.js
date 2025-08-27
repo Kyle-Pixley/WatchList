@@ -54,7 +54,7 @@ function fetchMovie() {
 }
 function chooseMovieBackground(mg) {
     if (mg.includes("Action")) {
-        pageBody.className = 'action-background';
+        pageBody.classList.add("action-background");
     }
 }
 //! move to inside form.addEventListener 
