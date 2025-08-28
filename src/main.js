@@ -24,6 +24,7 @@ form.addEventListener("submit", function (e) {
     console.log(searchMovie, 'movie search');
 });
 const pageBody = $('body');
+const contentSection = $("#content-section");
 const movieTitle = $('#title');
 const movieYear = $('#year');
 const movieRated = $('#rated');
@@ -54,7 +55,13 @@ function fetchMovie() {
 }
 function chooseMovieBackground(mg) {
     if (mg.includes("Action")) {
-        pageBody.classList.add("action-background");
+        pageBody.classList.add("bg-[url('/assets/action-background.jpg')]");
+    }
+    else if (mg.includes("Horror")) {
+        pageBody.classList.add("bg-[url('/assets/horror-background.jpg')]");
+        pageBody.classList.add("text-white");
+        contentSection.classList.remove("bg-amber-50/20");
+        movieRated.classList.add("border-white");
     }
 }
 //! move to inside form.addEventListener 

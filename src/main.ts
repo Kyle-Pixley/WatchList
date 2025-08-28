@@ -62,6 +62,7 @@ form.addEventListener("submit", function(e) {
 })
 
 const pageBody = $('body') as HTMLBodyElement;
+const contentSection = $("#content-section") as HTMLElement;
 
 
 const movieTitle = $('#title') as HTMLHeadingElement;
@@ -101,7 +102,12 @@ async function fetchMovie(): Promise<Post> {
 
 function chooseMovieBackground(mg: string) {
     if (mg.includes("Action")) {
-        pageBody.classList.add("action-background");
+        pageBody.classList.add("bg-[url('/assets/action-background.jpg')]");
+    } else if (mg.includes("Horror")) {
+        pageBody.classList.add("bg-[url('/assets/horror-background.jpg')]");
+        pageBody.classList.add("text-white");
+        contentSection.classList.remove("bg-amber-50/20");
+        movieRated.classList.add("border-white");
     }
 }
 

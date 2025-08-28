@@ -1,8 +1,1 @@
 @import "tailwindcss";
-
-.action-background {
-    background-image: url('/assets/action-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}

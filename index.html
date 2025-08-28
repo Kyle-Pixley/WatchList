@@ -8,7 +8,7 @@
 		<link rel="icon" href="assets/movie-icon.png" type="image/x-icon">
 		<title>Watch List</title>
 	</head>
-	<body id="body" class="flex flex-col mt-5 ml-10 border-4 w-[calc(100vw-5rem)] h-[calc(100vh-5rem)] bg-amber-50 m-40 overflow-y-hidden">
+	<body id="body" class="flex flex-col mt-5 ml-10 w-[calc(100vw-5rem)] h-[calc(100vh-5rem)] bg-amber-50 m-40 bg-cover bg-center bg-no-repeat">
 
 		<header class="flex">
 			<h1 id="banner" class="text-3xl font-bold mr-30">Watch List</h1>
@@ -23,14 +23,15 @@
 			<section id="title-year-section" class="flex w-[calc(100vw-10rem)] align-middle justify-between pl-4">
 				<div class="flex">
 					<h2 id="title" class="mr-5 text-3xl font-bold underline"></h2>
-					<h2 id="rated" class="text-2xl font-semibold mt-2 border border-black rounded px-1 py-0 leading-none"></h2>
+					<h2 id="rated" class="text-2xl font-semibold mt-2 border rounded px-1 py-0 leading-none"></h2>
 				</div>
 					<h2 id="year" class="mr-10 text-2xl font-semibold mt-1"></h2>
-			</section>
+				</section>
+				<div class="flex w-full justify-center mt-8">
+					<div id="title-border" class="border-b-3 w-[calc(100vw-20rem)] "></div>
+				</div>
 
-			<div id="title-border" class="border-b-3 w-[calc(100vw-5rem)]"></div>
-
-			<section class="flex p-5 m-5 justify-center bg-amber-50/20">
+			<section id="content-section" class="bg-amber-50/20 flex p-5 m-5 justify-center ">
 				<section class="font-bold">
 					<div class="flex">
 						<p class="mr-2">Directed by:</p><p id="director"></p>
@@ -41,6 +42,7 @@
 					<div class="flex">
 						<p class="mr-2">Starring:</p><p id="actors"></p>
 					</div>
+
 					<p id="plot" class="w-150 indent-8 mt-10"></p>
 
 					<article id="ratings" class="w-fit mt-10">
@@ -62,8 +64,8 @@
 			</section>
 
 		</main>
-		<footer>
-			<h3 id="omdb-credit">This Application Made Using <a href="https://www.omdbapi.com/" id="omdb-credit-link" class="font-bold">OMDBapi</a></h3>
+		<footer class="mt-auto">
+			<h3 id="omdb-credit" class="flex">This Application Made Using <a href="https://www.omdbapi.com/" id="omdb-credit-link" class="font-bold">OMDBapi</a></h3>
 		</footer>
 		<script type="module" src="/src/main.js"></script>
 	</body>
