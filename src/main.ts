@@ -63,6 +63,7 @@ form.addEventListener("submit", function(e) {
 
 const pageBody = $('body') as HTMLBodyElement;
 const contentSection = $("#content-section") as HTMLElement;
+const searchIcon = $("#search-icon") as HTMLImageElement;
 
 
 const movieTitle = $('#title') as HTMLHeadingElement;
@@ -106,8 +107,26 @@ function chooseMovieBackground(mg: string) {
     } else if (mg.includes("Horror")) {
         pageBody.classList.add("bg-[url('/assets/horror-background.jpg')]");
         pageBody.classList.add("text-white");
+        searchIcon.classList.add("invert")
+        pageBody.classList.add("text-shadow-lg/50")
         contentSection.classList.remove("bg-amber-50/20");
         movieRated.classList.add("border-white");
+    } else if (mg.includes("Comedy")) {
+        pageBody.classList.add("bg-[url('/assets/comedy-background.jpg')]");
+        contentSection.classList.remove("bg-amber-50/20");
+        pageBody.classList.add("text-yellow-200");
+        searchIcon.classList.add("text-yellow-200");
+        // searchIcon.classList.add("invert");
+        // searchIcon.classList.add("sepia");
+        // searchIcon.classList.add("saturate-200");
+        // searchIcon.classList.add("hue-rotate-10");
+        // searchIcon.classList.add("brightness-125");
+        // searchIcon.classList.add("contrast-120");
+    } else if (mg.includes("Drama")) {
+        pageBody.classList.add("bg-[url('/assets/drama-background.jpg')]");
+        pageBody.classList.add("text-white");
+        searchIcon.classList.add("invert")
+        contentSection.classList.remove("bg-amber-50/20");
     }
 }
 
@@ -136,7 +155,7 @@ fetchMovie()
 
 
             chooseMovieBackground(movie.Genre);
-           
+           console.log(movie.Genre)
 
         })
         .catch(err => {
