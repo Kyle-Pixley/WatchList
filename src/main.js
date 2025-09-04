@@ -71,6 +71,9 @@ function chooseMovieBackground(mg) {
         contentSection.classList.remove("bg-amber-50/20");
         pageBody.classList.add("text-yellow-200");
     }
+    else if (mg.includes("Crime")) {
+        pageBody.classList.add("bg-[url('/assets/crime-background.webp')]");
+    }
     else if (mg.includes("Fantasy")) {
         pageBody.classList.add("bg-[url('/assets/adventure-background.jpg')]");
         contentSection.classList.remove("bg-amber-50/20");
@@ -85,7 +88,7 @@ function chooseMovieBackground(mg) {
         pageBody.classList.add("bg-[url('/assets/biography-background.png')]");
         contentSection.classList.remove("bg-amber-50/20");
     }
-    else if (mg.includes("Drama")) {
+    else {
         pageBody.classList.add("bg-[url('/assets/drama-background.jpg')]");
         pageBody.classList.add("text-white");
         searchIcon.classList.add("invert");

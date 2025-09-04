@@ -239,11 +239,38 @@
   .table {
     display: table;
   }
+  .aspect-\[300\/444\] {
+    aspect-ratio: 300/444;
+  }
+  .h-1 {
+    height: calc(var(--spacing) * 1);
+  }
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
+  }
+  .h-160 {
+    height: calc(var(--spacing) * 160);
+  }
+  .h-180 {
+    height: calc(var(--spacing) * 180);
+  }
+  .h-200 {
+    height: calc(var(--spacing) * 200);
+  }
+  .h-\[calc\(100vh\)\] {
+    height: calc(100vh);
+  }
   .h-\[calc\(100vh-5rem\)\] {
     height: calc(100vh - 5rem);
+  }
+  .h-auto {
+    height: auto;
+  }
+  .h-fit {
+    height: fit-content;
   }
   .w-90 {
     width: calc(var(--spacing) * 90);
@@ -259,6 +286,9 @@
   }
   .w-\[calc\(100vw-20rem\)\] {
     width: calc(100vw - 20rem);
+  }
+  .w-auto {
+    width: auto;
   }
   .w-fit {
     width: fit-content;
@@ -280,6 +310,12 @@
   }
   .justify-center {
     justify-content: center;
+  }
+  .overflow-auto {
+    overflow: auto;
+  }
+  .overflow-y-hidden {
+    overflow-y: hidden;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -311,6 +347,12 @@
       background-color: color-mix(in oklab, var(--color-amber-50) 20%, transparent);
     }
   }
+  .bg-\[url\(\'\.\/assets\/crime-backgound\.webp\'\)\] {
+    background-image: url('./assets/crime-backgound.webp');
+  }
+  .bg-\[url\(\'\.\/assets\/crime-background\.webp\'\)\] {
+    background-image: url('./assets/crime-background.webp');
+  }
   .bg-\[url\(\'\/assets\/action-background\.jpg\'\)\] {
     background-image: url('/assets/action-background.jpg');
   }
@@ -328,6 +370,9 @@
   }
   .bg-\[url\(\'\/assets\/comedy-background\.jpg\'\)\] {
     background-image: url('/assets/comedy-background.jpg');
+  }
+  .bg-\[url\(\'\/assets\/crime-background\.webp\'\)\] {
+    background-image: url('/assets/crime-background.webp');
   }
   .bg-\[url\(\'\/assets\/drama-background\.jpg\'\)\] {
     background-image: url('/assets/drama-background.jpg');
