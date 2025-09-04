@@ -107,7 +107,7 @@ function chooseMovieBackground(mg: string) {
     } else if (mg.includes("Horror")) {
         pageBody.classList.add("bg-[url('/assets/horror-background.jpg')]");
         pageBody.classList.add("text-white");
-        searchIcon.classList.add("invert")
+        searchIcon.classList.add("invert");
         pageBody.classList.add("text-shadow-lg/50")
         contentSection.classList.remove("bg-amber-50/20");
         movieRated.classList.add("border-white");
@@ -115,17 +115,21 @@ function chooseMovieBackground(mg: string) {
         pageBody.classList.add("bg-[url('/assets/comedy-background.jpg')]");
         contentSection.classList.remove("bg-amber-50/20");
         pageBody.classList.add("text-yellow-200");
-        searchIcon.classList.add("text-yellow-200");
-        // searchIcon.classList.add("invert");
-        // searchIcon.classList.add("sepia");
-        // searchIcon.classList.add("saturate-200");
-        // searchIcon.classList.add("hue-rotate-10");
-        // searchIcon.classList.add("brightness-125");
-        // searchIcon.classList.add("contrast-120");
+    } else if (mg.includes("Fantasy")) {
+        pageBody.classList.add("bg-[url('/assets/adventure-background.jpg')]");
+        contentSection.classList.remove("bg-amber-50/20");
+    } else if (mg.includes("Sci-Fi")) {
+        pageBody.classList.add("bg-[url('/assets/sci-fi-background.webp')]");
+        contentSection.classList.remove("bg-amber-50/20");
+        pageBody.classList.add("text-white");
+        searchIcon.classList.add("invert");
+    } else if (mg.includes("Biography")) {
+        pageBody.classList.add("bg-[url('/assets/biography-background.png')]");
+        contentSection.classList.remove("bg-amber-50/20");
     } else if (mg.includes("Drama")) {
         pageBody.classList.add("bg-[url('/assets/drama-background.jpg')]");
         pageBody.classList.add("text-white");
-        searchIcon.classList.add("invert")
+        searchIcon.classList.add("invert");
         contentSection.classList.remove("bg-amber-50/20");
     }
 }
