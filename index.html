@@ -8,14 +8,16 @@
 		<link rel="icon" href="assets/movie-icon.png" type="image/x-icon">
 		<title>Watch List</title>
 	</head>
-	<body id="body" class="flex flex-col mt-5 w-[calc(100vw)] h-[calc(100vh)] bg-amber-50 bg-cover bg-center bg-no-repeat">
+	<body id="body" class="flex flex-col mt-5 w-[calc(100vw)] bg-amber-50 bg-cover bg-center bg-no-repeat pb-20">
 
 		<header class="flex flex-col items-center">
 			<h1 id="banner" class="text-3xl font-bold mb-1">Watch List</h1>
 
 			<form id="search-form" class="flex justify-between">
 				<input id="search" type="text" placeholder="Movie Name" class=" bg-amber-50/20 border-1 rounded-sm indent-1 mr-2">
-				<button id="submit" type="submit" class="flex bg-amber-50/20 m-auto rounded-sm border-1 p-1"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
+				<!-- ADD YEAR for search -->
+				 
+				<button id="submit" type="submit" class="flex bg-amber-50/20 rounded-sm border-1 p-0"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
 			</form>
 		</header>
 
@@ -30,9 +32,8 @@
 				<div class="flex w-full justify-center mt-6">
 					<div id="title-border" class="bg-black h-0.5 w-[calc(80vw)]"></div>
 				</div>
-				<!-- here -->
 
-			<section id="content-section" class="bg-amber-50/20 flex p-5 m-5 justify-center ">
+			<section id="content-section" class="bg-amber-50/20 flex flex-col-reverse p-5 justify-center ">
 				<section class="font-bold">
 					<div class="flex">
 						<p class="mr-2">Directed by:</p><p id="director"></p>
@@ -44,7 +45,7 @@
 						<p class="mr-2">Starring:</p><p id="actors"></p>
 					</div>
 
-					<p id="plot" class="w-150 indent-8 mt-10"></p>
+					<p id="plot" class="w-[calc(90vw)] indent-8 mt-10"></p>
 
 					<article id="ratings" class="w-fit mt-10">
 						<section class="flex mb-2">
@@ -60,13 +61,13 @@
 					
 				</section>
 
-				<img id="poster" class="w-90 max-h-140 pl-10"></img>
+				<img id="poster" class="w-90 max-h-140 pl-10 mb-4"></img>
 
 			</section>
 
 		</main>
 		<footer class="mt-auto">
-			<h3 id="omdb-credit" class="flex">This Application Made Using <a href="https://www.omdbapi.com/" id="omdb-credit-link" class="font-bold">OMDBapi</a></h3>
+			<h3 id="omdb-credit" class="flex justify-center">This Application Made Using <a href="https://www.omdbapi.com/" id="omdb-credit-link" class="font-bold">OMDBapi</a></h3>
 		</footer>
 		<script type="module" src="/src/main.js"></script>
 	</body>
