@@ -4,32 +4,33 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE-edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./dist/styles.css" >
+		<link rel="stylesheet" href="./dist/styles.css">
 		<link rel="icon" href="assets/movie-icon.png" type="image/x-icon">
 		<title>Watch List</title>
 	</head>
-	<body id="body" class="flex flex-col mt-5 ml-10 w-[calc(100vw-5rem)] h-[calc(100vh)] bg-amber-50 m-40 bg-cover bg-center bg-no-repeat">
+	<body id="body" class="flex flex-col mt-5 w-[calc(100vw)] h-[calc(100vh)] bg-amber-50 bg-cover bg-center bg-no-repeat">
 
-		<header class="flex">
-			<h1 id="banner" class="text-3xl font-bold mr-30">Watch List</h1>
+		<header class="flex flex-col items-center">
+			<h1 id="banner" class="text-3xl font-bold mb-1">Watch List</h1>
 
 			<form id="search-form" class="flex justify-between">
-				<input id="search" type="text" placeholder="Movie Name" class="border-1 rounded-sm indent-1 mr-2">
-				<button id="submit" type="submit" class="flex m-auto rounded-sm border-1 p-1"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
+				<input id="search" type="text" placeholder="Movie Name" class=" bg-amber-50/20 border-1 rounded-sm indent-1 mr-2">
+				<button id="submit" type="submit" class="flex bg-amber-50/20 m-auto rounded-sm border-1 p-1"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
 			</form>
 		</header>
 
 		<main class="mt-10">
-			<section id="title-year-section" class="flex w-[calc(100vw-10rem)] align-middle justify-between pl-4">
+			<section id="title-year-section" class="flex flex-col items-center pl-3 pr-3 w-[calc(100vw)]">
 				<div class="flex">
-					<h2 id="title" class="mr-5 text-3xl font-bold underline"></h2>
+					<h2 id="title" class="mr-2 text-2xl font-bold underline"></h2>
 					<h2 id="rated" class="text-2xl font-semibold mt-2 border rounded px-1 py-0 leading-none"></h2>
 				</div>
-					<h2 id="year" class="mr-10 text-2xl font-semibold mt-1"></h2>
-				</section>
-				<div class="flex w-full justify-center mt-8">
-					<div id="title-border" class="border-b-3 w-[calc(100vw-20rem)] "></div>
+					<h2 id="year" class="text-2xl font-semibold mt-1"></h2>
+			</section>
+				<div class="flex w-full justify-center mt-6">
+					<div id="title-border" class="bg-black h-0.5 w-[calc(80vw)]"></div>
 				</div>
+				<!-- here -->
 
 			<section id="content-section" class="bg-amber-50/20 flex p-5 m-5 justify-center ">
 				<section class="font-bold">
