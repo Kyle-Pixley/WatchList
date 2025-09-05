@@ -64,7 +64,7 @@ form.addEventListener("submit", function(e) {
 const pageBody = $('body') as HTMLBodyElement;
 const contentSection = $("#content-section") as HTMLElement;
 const searchIcon = $("#search-icon") as HTMLImageElement;
-
+const footer = $("footer") as HTMLElement;
 
 const movieTitle = $('#title') as HTMLHeadingElement;
 const movieYear = $('#year') as HTMLHeadingElement;
@@ -117,6 +117,10 @@ function chooseMovieBackground(mg: string) {
         pageBody.classList.add("text-yellow-200");
     } else if (mg.includes("Crime")) {
         pageBody.classList.add("bg-[url('/assets/crime-background.webp')]");
+        contentSection.classList.remove("bg-amber-50/20");
+        form.classList.add("text-amber-100");
+        searchIcon.classList.add("invert");
+        footer.classList.add("text-amber-100")
     } else if (mg.includes("Fantasy")) {
         pageBody.classList.add("bg-[url('/assets/adventure-background.jpg')]");
         contentSection.classList.remove("bg-amber-50/20");
