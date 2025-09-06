@@ -53,6 +53,7 @@ function isOmdbOk(x: OmdbResult): x is OmdbOk {
 
 
 const searchMovie = $('#search') as HTMLInputElement;
+const yearSearch = $('#year-search') as HTMLInputElement;
 let movie = searchMovie.value;
 const form = $('#search-form') as HTMLFormElement;
 form.addEventListener("submit", function(e) {
@@ -86,7 +87,14 @@ const movieRating3 = $('#rating-3') as HTMLParagraphElement;
 
 async function fetchMovie(): Promise<Post> {
 
-    const response = searchMovie.value ? await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`) : await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
+    let response;
+
+        if (searchMovie.value && yearSearch.value) {
+            response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`)
+        } else if(searchMovie.value) {
+             response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`)
+        } else response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`)
+
 
     if(!response.ok) {
         throw new Error(`http error: ${response.status}`);

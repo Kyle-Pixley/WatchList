@@ -14,10 +14,12 @@
 			<h1 id="banner" class="text-3xl font-bold mb-1">Watch List</h1>
 
 			<form id="search-form" class="flex justify-between">
+
 				<input id="search" type="text" placeholder="Movie Name" class=" bg-amber-50/20 border-1 rounded-sm indent-1 mr-2">
-				<!-- ADD YEAR for search -->
+				 <input id="year-search" type="text" placeholder="Year" class="bg-amber-50/20 border-1 rounded-sm indent-1 mr-2">
 				 
 				<button id="submit" type="submit" class="flex bg-amber-50/20 rounded-sm border-1 p-0"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
+				
 			</form>
 		</header>
 
@@ -33,7 +35,7 @@
 					<div id="title-border" class="bg-black h-0.5 w-[calc(80vw)]"></div>
 				</div>
 
-			<section id="content-section" class="bg-amber-50/20 flex flex-col-reverse p-5 justify-center ">
+			<section id="content-section" class="bg-amber-50/20 flex flex-col-reverse items-center p-5 justify-center ">
 				<section class="font-bold">
 					<div class="flex">
 						<p class="mr-2">Directed by:</p><p id="director"></p>
@@ -61,7 +63,7 @@
 					
 				</section>
 
-				<img id="poster" class="w-90 max-h-140 pl-10 mb-4"></img>
+				<img id="poster" class="w-90 max-h-140 mb-4"></img>
 
 			</section>
 

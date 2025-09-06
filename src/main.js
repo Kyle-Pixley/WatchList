@@ -17,6 +17,7 @@ function isOmdbOk(x) {
     return x.Response === "True";
 }
 const searchMovie = $('#search');
+const yearSearch = $('#year-search');
 let movie = searchMovie.value;
 const form = $('#search-form');
 form.addEventListener("submit", function (e) {
@@ -44,7 +45,15 @@ const movieRating2 = $('#rating-2');
 const movieRating3 = $('#rating-3');
 function fetchMovie() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = searchMovie.value ? yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`) : yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
+        let response;
+        if (searchMovie.value && yearSearch.value) {
+            response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`);
+        }
+        else if (searchMovie.value) {
+            response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
+        }
+        else
+            response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
         if (!response.ok) {
             throw new Error(`http error: ${response.status}`);
         }
