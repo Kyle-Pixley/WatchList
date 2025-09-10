@@ -13,18 +13,18 @@
 		<header class="flex flex-col items-center">
 			<h1 id="banner" class="text-3xl font-bold mb-1">Watch List</h1>
 
-			<form id="search-form" class="flex flex-col items-center justify-between">
+			<form id="search-form" class="flex flex-col items-center justify-between md:flex-row">
 
-				<input id="search" type="text" placeholder="Movie Name" class=" bg-amber-50/20 border-1 rounded-sm indent-1 mb-3">
-				 <input id="year-search" type="text" placeholder="Year" class="bg-amber-50/20 border-1 rounded-sm indent-1 mb-3">
+				<input id="search" type="text" placeholder="Movie Name" class=" bg-amber-50/20 border-1 rounded-sm indent-1 mb-3 placeholder:font-bold md: mr-4">
+				 <input id="year-search" type="text" placeholder="Year" class="bg-amber-50/20 border-1 rounded-sm indent-1 mb-3 placeholder:font-bold md: mr-4">
 				 
-				<button id="submit" type="submit" class="flex bg-amber-50/20 rounded-sm border-1 p-0"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
+				<button id="submit" type="submit" class="flex bg-amber-50/20 rounded-sm border-1 pl-1 md: mb-3"><p class="mr-1">Search</p><img id='search-icon' src="/assets/search-icon.png" class="h-6"/></button> 
 
 			</form>
 		</header>
 
 		<main class="mt-6">
-			<section id="title-year-section" class="flex flex-col items-center pl-3 pr-3 w-[calc(100vw)]">
+			<section id="title-year-section" class="flex flex-col items-center pl-3 pr-3 w-[calc(100vw)] md:flex-row md:justify-between md:pl-13 md:pr-13">
 				<div class="flex">
 					<h2 id="title" class="mr-2 text-2xl font-bold underline"></h2>
 					<h2 id="rated" class="text-2xl font-semibold mt-2 border rounded px-1 py-0 leading-none"></h2>
@@ -35,7 +35,7 @@
 					<div id="title-border" class="bg-black h-0.5 w-[calc(80vw)]"></div>
 				</div>
 
-			<section id="content-section" class="bg-amber-50/20 flex flex-col-reverse items-center p-5 justify-center ">
+			<section id="content-section" class="bg-amber-50/20 flex flex-col-reverse items-center p-5 justify-center lg:flex-row">
 				<section class="font-bold">
 					<div class="flex">
 						<p class="mr-2">Directed by:</p><p id="director"></p>
@@ -47,7 +47,7 @@
 						<p class="mr-2">Starring:</p><p id="actors"></p>
 					</div>
 
-					<p id="plot" class="w-[calc(90vw)] indent-8 mt-10"></p>
+					<p id="plot" class="w-[calc(90vw)] indent-8 mt-10 lg:w-[calc(60vw)] lg:pr-10"></p>
 
 					<article id="ratings" class="w-fit mt-10">
 						<section class="flex mb-2">
