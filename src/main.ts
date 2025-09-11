@@ -55,11 +55,43 @@ function isOmdbOk(x: OmdbResult): x is OmdbOk {
 const searchMovie = $('#search') as HTMLInputElement;
 const yearSearch = $('#year-search') as HTMLInputElement;
 let movie = searchMovie.value;
+
+window.addEventListener("DOMContentLoaded", () => {
+    form.dispatchEvent(new Event("submit", {cancelable: true}));
+});
+
 const form = $('#search-form') as HTMLFormElement;
 form.addEventListener("submit", function(e) {
     e.preventDefault();
-    console.log(searchMovie,'movie search');
-    
+fetchMovie()
+        .then(movie => {
+            console.log("Movie:", movie);
+            movieTitle? movieTitle.textContent = movie.Title : null;
+            movieYear? movieYear.textContent = movie.Year : null;
+            movieRated? movieRated.textContent = movie.Rated : null;
+            moviePlot? moviePlot.textContent = movie.Plot : null;
+            moviePoster? moviePoster.src = movie.Poster : null;
+            movieDirector? movieDirector.textContent = movie.Director : null;
+            movieWriter? movieWriter.textContent = movie.Writer : null;
+            movieActors? movieActors.textContent = movie.Actors : null;
+
+
+            movieRatingSource1.textContent = movie.Ratings[0]?.Source ?? "";
+            movieRatingSource2.textContent = movie.Ratings[1]?.Source ?? "";
+            movieRatingSource3.textContent = movie.Ratings[2]?.Source ?? "";
+
+            movieRating1.textContent = movie.Ratings[0]?.Value ?? "";
+            movieRating2.textContent = movie.Ratings[1]?.Value ?? "";
+            movieRating3.textContent = movie.Ratings[2]?.Value ?? "";
+
+
+            chooseMovieBackground(movie.Genre);
+           console.log(movie.Genre)
+
+        })
+        .catch(err => {
+            console.error("error in fetch" , err)
+        });
 })
 
 const header = $('header') as HTMLElement;
@@ -89,7 +121,8 @@ const movieRating3 = $('#rating-3') as HTMLParagraphElement;
 async function fetchMovie(): Promise<Post> {
 
     let response;
-
+console.log(`search movie: ${searchMovie.value}`)
+console.log(`search year: ${yearSearch.value}`)
         if (searchMovie.value && yearSearch.value) {
             response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`)
         } else if(searchMovie.value) {
@@ -154,35 +187,3 @@ function chooseMovieBackground(mg: string) {
     }
     console.log(pageBody.classList)
 }
-
-
-//! move to inside form.addEventListener 
-fetchMovie()
-        .then(movie => {
-            console.log("Movie:", movie);
-            movieTitle? movieTitle.textContent = movie.Title : null;
-            movieYear? movieYear.textContent = movie.Year : null;
-            movieRated? movieRated.textContent = movie.Rated : null;
-            moviePlot? moviePlot.textContent = movie.Plot : null;
-            moviePoster? moviePoster.src = movie.Poster : null;
-            movieDirector? movieDirector.textContent = movie.Director : null;
-            movieWriter? movieWriter.textContent = movie.Writer : null;
-            movieActors? movieActors.textContent = movie.Actors : null;
-
-
-            movieRatingSource1.textContent = movie.Ratings[0]?.Source ?? "";
-            movieRatingSource2.textContent = movie.Ratings[1]?.Source ?? "";
-            movieRatingSource3.textContent = movie.Ratings[2]?.Source ?? "";
-
-            movieRating1.textContent = movie.Ratings[0]?.Value ?? "";
-            movieRating2.textContent = movie.Ratings[1]?.Value ?? "";
-            movieRating3.textContent = movie.Ratings[2]?.Value ?? "";
-
-
-            chooseMovieBackground(movie.Genre);
-           console.log(movie.Genre)
-
-        })
-        .catch(err => {
-            console.error("error in fetch" , err)
-        });

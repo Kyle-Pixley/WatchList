@@ -19,10 +19,36 @@ function isOmdbOk(x) {
 const searchMovie = $('#search');
 const yearSearch = $('#year-search');
 let movie = searchMovie.value;
+window.addEventListener("DOMContentLoaded", () => {
+    form.dispatchEvent(new Event("submit", { cancelable: true }));
+});
 const form = $('#search-form');
 form.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log(searchMovie, 'movie search');
+    fetchMovie()
+        .then(movie => {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+        console.log("Movie:", movie);
+        movieTitle ? movieTitle.textContent = movie.Title : null;
+        movieYear ? movieYear.textContent = movie.Year : null;
+        movieRated ? movieRated.textContent = movie.Rated : null;
+        moviePlot ? moviePlot.textContent = movie.Plot : null;
+        moviePoster ? moviePoster.src = movie.Poster : null;
+        movieDirector ? movieDirector.textContent = movie.Director : null;
+        movieWriter ? movieWriter.textContent = movie.Writer : null;
+        movieActors ? movieActors.textContent = movie.Actors : null;
+        movieRatingSource1.textContent = (_b = (_a = movie.Ratings[0]) === null || _a === void 0 ? void 0 : _a.Source) !== null && _b !== void 0 ? _b : "";
+        movieRatingSource2.textContent = (_d = (_c = movie.Ratings[1]) === null || _c === void 0 ? void 0 : _c.Source) !== null && _d !== void 0 ? _d : "";
+        movieRatingSource3.textContent = (_f = (_e = movie.Ratings[2]) === null || _e === void 0 ? void 0 : _e.Source) !== null && _f !== void 0 ? _f : "";
+        movieRating1.textContent = (_h = (_g = movie.Ratings[0]) === null || _g === void 0 ? void 0 : _g.Value) !== null && _h !== void 0 ? _h : "";
+        movieRating2.textContent = (_k = (_j = movie.Ratings[1]) === null || _j === void 0 ? void 0 : _j.Value) !== null && _k !== void 0 ? _k : "";
+        movieRating3.textContent = (_m = (_l = movie.Ratings[2]) === null || _l === void 0 ? void 0 : _l.Value) !== null && _m !== void 0 ? _m : "";
+        chooseMovieBackground(movie.Genre);
+        console.log(movie.Genre);
+    })
+        .catch(err => {
+        console.error("error in fetch", err);
+    });
 });
 const header = $('header');
 const pageBody = $('body');
@@ -47,6 +73,8 @@ const movieRating3 = $('#rating-3');
 function fetchMovie() {
     return __awaiter(this, void 0, void 0, function* () {
         let response;
+        console.log(`search movie: ${searchMovie.value}`);
+        console.log(`search year: ${yearSearch.value}`);
         if (searchMovie.value && yearSearch.value) {
             response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`);
         }
@@ -117,30 +145,5 @@ function chooseMovieBackground(mg) {
     }
     console.log(pageBody.classList);
 }
-//! move to inside form.addEventListener 
-fetchMovie()
-    .then(movie => {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-    console.log("Movie:", movie);
-    movieTitle ? movieTitle.textContent = movie.Title : null;
-    movieYear ? movieYear.textContent = movie.Year : null;
-    movieRated ? movieRated.textContent = movie.Rated : null;
-    moviePlot ? moviePlot.textContent = movie.Plot : null;
-    moviePoster ? moviePoster.src = movie.Poster : null;
-    movieDirector ? movieDirector.textContent = movie.Director : null;
-    movieWriter ? movieWriter.textContent = movie.Writer : null;
-    movieActors ? movieActors.textContent = movie.Actors : null;
-    movieRatingSource1.textContent = (_b = (_a = movie.Ratings[0]) === null || _a === void 0 ? void 0 : _a.Source) !== null && _b !== void 0 ? _b : "";
-    movieRatingSource2.textContent = (_d = (_c = movie.Ratings[1]) === null || _c === void 0 ? void 0 : _c.Source) !== null && _d !== void 0 ? _d : "";
-    movieRatingSource3.textContent = (_f = (_e = movie.Ratings[2]) === null || _e === void 0 ? void 0 : _e.Source) !== null && _f !== void 0 ? _f : "";
-    movieRating1.textContent = (_h = (_g = movie.Ratings[0]) === null || _g === void 0 ? void 0 : _g.Value) !== null && _h !== void 0 ? _h : "";
-    movieRating2.textContent = (_k = (_j = movie.Ratings[1]) === null || _j === void 0 ? void 0 : _j.Value) !== null && _k !== void 0 ? _k : "";
-    movieRating3.textContent = (_m = (_l = movie.Ratings[2]) === null || _l === void 0 ? void 0 : _l.Value) !== null && _m !== void 0 ? _m : "";
-    chooseMovieBackground(movie.Genre);
-    console.log(movie.Genre);
-})
-    .catch(err => {
-    console.error("error in fetch", err);
-});
 export {};
 //# sourceMappingURL=main.js.map
