@@ -62,6 +62,7 @@ form.addEventListener("submit", function(e) {
     
 })
 
+const header = $('header') as HTMLElement;
 const pageBody = $('body') as HTMLBodyElement;
 const contentSection = $("#content-section") as HTMLElement;
 const searchIcon = $("#search-icon") as HTMLImageElement;
@@ -140,12 +141,18 @@ function chooseMovieBackground(mg: string) {
     } else if (mg.includes("Biography")) {
         pageBody.classList.add("bg-[url('/assets/biography-background.png')]");
         contentSection.classList.remove("bg-amber-50/20");
+    } else if (mg.includes("Documentary")) {
+        pageBody.classList.add("bg-[url('/assets/documentary-background.jpg')]");
+        footer.classList.add('text-white');
+        header.classList.add("text-white");
+        searchIcon.classList.add("invert");
     } else {
         pageBody.classList.add("bg-[url('/assets/drama-background.jpg')]");
         pageBody.classList.add("text-white");
         searchIcon.classList.add("invert");
         contentSection.classList.remove("bg-amber-50/20");
     }
+    console.log(pageBody.classList)
 }
 
 

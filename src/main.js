@@ -24,6 +24,7 @@ form.addEventListener("submit", function (e) {
     e.preventDefault();
     console.log(searchMovie, 'movie search');
 });
+const header = $('header');
 const pageBody = $('body');
 const contentSection = $("#content-section");
 const searchIcon = $("#search-icon");
@@ -102,12 +103,19 @@ function chooseMovieBackground(mg) {
         pageBody.classList.add("bg-[url('/assets/biography-background.png')]");
         contentSection.classList.remove("bg-amber-50/20");
     }
+    else if (mg.includes("Documentary")) {
+        pageBody.classList.add("bg-[url('/assets/documentary-background.jpg')]");
+        footer.classList.add('text-white');
+        header.classList.add("text-white");
+        searchIcon.classList.add("invert");
+    }
     else {
         pageBody.classList.add("bg-[url('/assets/drama-background.jpg')]");
         pageBody.classList.add("text-white");
         searchIcon.classList.add("invert");
         contentSection.classList.remove("bg-amber-50/20");
     }
+    console.log(pageBody.classList);
 }
 //! move to inside form.addEventListener 
 fetchMovie()

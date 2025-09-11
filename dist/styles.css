@@ -366,6 +366,12 @@
   .bg-\[url\(\'\/assets\/crime-background\.webp\'\)\] {
     background-image: url('/assets/crime-background.webp');
   }
+  .bg-\[url\(\'\/assets\/documentart-background\.jpg\'\)\] {
+    background-image: url('/assets/documentart-background.jpg');
+  }
+  .bg-\[url\(\'\/assets\/documentary-background\.jpg\'\)\] {
+    background-image: url('/assets/documentary-background.jpg');
+  }
   .bg-\[url\(\'\/assets\/drama-background\.jpg\'\)\] {
     background-image: url('/assets/drama-background.jpg');
   }
