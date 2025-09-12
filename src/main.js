@@ -44,7 +44,6 @@ form.addEventListener("submit", function (e) {
         movieRating2.textContent = (_k = (_j = movie.Ratings[1]) === null || _j === void 0 ? void 0 : _j.Value) !== null && _k !== void 0 ? _k : "";
         movieRating3.textContent = (_m = (_l = movie.Ratings[2]) === null || _l === void 0 ? void 0 : _l.Value) !== null && _m !== void 0 ? _m : "";
         chooseMovieBackground(movie.Genre);
-        console.log(movie.Genre);
     })
         .catch(err => {
         console.error("error in fetch", err);
@@ -73,8 +72,6 @@ const movieRating3 = $('#rating-3');
 function fetchMovie() {
     return __awaiter(this, void 0, void 0, function* () {
         let response;
-        console.log(`search movie: ${searchMovie.value}`);
-        console.log(`search year: ${yearSearch.value}`);
         if (searchMovie.value && yearSearch.value) {
             response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`);
         }
@@ -93,9 +90,35 @@ function fetchMovie() {
         return data;
     });
 }
+const bgClasses = [
+    "bg-[url('/assets/action-background.jpg')]",
+    "bg-[url('/assets/horror-background.jpg')]",
+    "bg-[url('/assets/comedy-background.jpg')]",
+    "bg-[url('/assets/crime-background.webp')]",
+    "bg-[url('/assets/adventure-background.jpg')]",
+    "bg-[url('/assets/sci-fi-background.jpg')]",
+    "bg-[url('/assets/biography-background.jpg')]",
+    "bg-[url('/assets/documentary-background.jpg')]",
+    "bg-[url('/assets/drama-background.jpg')]",
+];
+function resetTheme() {
+    //remove prior background
+    pageBody.classList.remove(...bgClasses);
+    //remove any other declaration made for specific backgrounds
+    pageBody.classList.remove("text-white", "text-yellow-200", "text-shadow-lg/50");
+    contentSection.classList.remove("bg-amber-50/20");
+    form.classList.remove("text-amber-100");
+    footer.classList.remove("text-amber-100");
+    header.classList.remove("text-white");
+    movieRated.classList.remove("border-white");
+    searchIcon.classList.remove("invert");
+}
 function chooseMovieBackground(mg) {
+    resetTheme();
+    console.log('choose movie background', mg);
     if (mg.includes("Action")) {
         pageBody.classList.add("bg-[url('/assets/action-background.jpg')]");
+        contentSection.classList.add("bg-amber-50/20");
     }
     else if (mg.includes("Horror")) {
         pageBody.classList.add("bg-[url('/assets/horror-background.jpg')]");
