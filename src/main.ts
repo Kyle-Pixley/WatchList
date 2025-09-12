@@ -36,7 +36,7 @@ interface OmdbError {
     Error: string;
 }
 
-
+//throws error if element is not found
 const $ = <T extends Element>(sel: string) => {
     const ele = document.querySelector<T>(sel);
     if (!ele) throw new Error(`Missing element: $(sel)`);
@@ -55,24 +55,46 @@ const searchMovie = $('#search') as HTMLInputElement;
 const yearSearch = $('#year-search') as HTMLInputElement;
 let movie = searchMovie.value;
 
+
 window.addEventListener("DOMContentLoaded", () => {
     form.dispatchEvent(new Event("submit", {cancelable: true}));
 });
 
+
 const form = $('#search-form') as HTMLFormElement;
+//renders new movie when form is submited 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 fetchMovie()
         .then(movie => {
             console.log("Movie:", movie);
-            movieTitle? movieTitle.textContent = movie.Title : null;
-            movieYear? movieYear.textContent = movie.Year : null;
-            movieRated? movieRated.textContent = movie.Rated : null;
-            moviePlot? moviePlot.textContent = movie.Plot : null;
-            moviePoster? moviePoster.src = movie.Poster : null;
-            movieDirector? movieDirector.textContent = movie.Director : null;
-            movieWriter? movieWriter.textContent = movie.Writer : null;
-            movieActors? movieActors.textContent = movie.Actors : null;
+
+            // if movie.something returns a value of "N/A" (still a truthy value) it will render nothing
+            function displayText(element: HTMLElement | null, value: string) {
+                if (element) element.textContent = (value && value !== "N/A") ? value: "";
+            }
+            function displaySrc(img: HTMLImageElement | null, value: string) {
+                if (img) img.src = (value && value !== "N/A") ? value : "";
+            }
+
+            displayText(movieTitle, movie.Title);
+            displayText(movieYear, movie.Year);
+            displayText(movieRated, movie.Rated);
+            displayText(moviePlot, movie.Plot);
+            displayText(movieDirector, movie.Director);
+            displayText(movieWriter, movie.Writer);
+            displayText(movieActors, movie.Actors);
+            displaySrc(moviePoster, movie.Poster);
+
+
+            // movieTitle? movieTitle.textContent = movie.Title : null;
+            // movieYear? movieYear.textContent = movie.Year : null;
+            // movieRated? movieRated.textContent = movie.Rated : null;
+            // moviePlot? moviePlot.textContent = movie.Plot : null;
+            // moviePoster? moviePoster.src = movie.Poster : null;
+            // movieDirector? movieDirector.textContent = movie.Director : null;
+            // movieWriter? movieWriter.textContent = movie.Writer : null;
+            // movieActors? movieActors.textContent = movie.Actors : null;
 
 
             movieRatingSource1.textContent = movie.Ratings[0]?.Source ?? "";
@@ -115,8 +137,8 @@ const movieRating2 = $('#rating-2') as HTMLParagraphElement;
 const movieRating3 = $('#rating-3') as HTMLParagraphElement;
 
 
+// calls on api to get new movie also runs on page load with default movie title Starship Troopers
 async function fetchMovie(): Promise<Post> {
-
     let response;
         if (searchMovie.value && yearSearch.value) {
             response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`)
@@ -131,11 +153,11 @@ async function fetchMovie(): Promise<Post> {
 
     const data: OmdbResult = await response.json();
 
-    if (data.Response === "False") {
-        throw new Error((data as OmdbError).Error);
+    if(isOmdbOk(data)) {
+        return data;
+    } else {
+        throw new Error(data.Error);
     }
-
-    return data as Post;
 }
 
 
