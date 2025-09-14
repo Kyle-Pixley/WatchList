@@ -74,7 +74,7 @@ fetchMovie()
                 if (element) element.textContent = (value && value !== "N/A") ? value: "";
             }
             function displaySrc(img: HTMLImageElement | null, value: string) {
-                if (img) img.src = (value && value !== "N/A") ? value : "";
+                if (img) img.src = (value && value !== "N/A") ? value : "/assets/no-poster.htm";
             }
 
             displayText(movieTitle, movie.Title);

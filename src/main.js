@@ -38,7 +38,7 @@ form.addEventListener("submit", function (e) {
         }
         function displaySrc(img, value) {
             if (img)
-                img.src = (value && value !== "N/A") ? value : "";
+                img.src = (value && value !== "N/A") ? value : "/assets/no-poster.htm";
         }
         displayText(movieTitle, movie.Title);
         displayText(movieYear, movie.Year);
