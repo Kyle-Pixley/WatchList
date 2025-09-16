@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:css": "tailwindcss -i ./src/index-style.css -o ./dist/styles.css --watch"
+    "dev:css": "tailwindcss -i ./index-style.css -o ./dist/styles.css --watch",
+    "build:css": "tailwindcss -i ./index-style.css -o ./dist/styles.css --minify",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run build:css && npm run typecheck"
   },
   "keywords": [],
   "author": "",

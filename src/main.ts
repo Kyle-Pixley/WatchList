@@ -198,7 +198,6 @@ function resetTheme() {
 
 function chooseMovieBackground(mg: string) {
     resetTheme();
-    console.log('choose movie background', mg)
     if (mg.includes("Action")) {
         pageBody.classList.add("bg-[url('/assets/action-background.jpg')]");
         contentSection.classList.add("bg-amber-50/20");
