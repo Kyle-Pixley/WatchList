@@ -151,10 +151,10 @@ const movieRating3 = $('#rating-3') as HTMLParagraphElement;
 async function fetchMovie(): Promise<Post> {
     let response;
         if (searchMovie.value && yearSearch.value) {
-            response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`)
+            response = await fetch(`https://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`)
         } else if(searchMovie.value) {
-             response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`)
-        } else response = await fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`)
+             response = await fetch(`https://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`)
+        } else response = await fetch(`https://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`)
 
 
     if(!response.ok) {
