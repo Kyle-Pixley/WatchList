@@ -103,13 +103,13 @@ function fetchMovie() {
     return __awaiter(this, void 0, void 0, function* () {
         let response;
         if (searchMovie.value && yearSearch.value) {
-            response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`);
+            response = yield fetch(`https://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}&y=${yearSearch.value}`);
         }
         else if (searchMovie.value) {
-            response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
+            response = yield fetch(`https://www.omdbapi.com/?apikey=e5367c58&plot=full&t=${searchMovie.value.replace(' ', '+')}`);
         }
         else
-            response = yield fetch(`http://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
+            response = yield fetch(`https://www.omdbapi.com/?apikey=e5367c58&plot=full&t=starship+troopers`);
         if (!response.ok) {
             throw new Error(`http error: ${response.status}`);
         }
