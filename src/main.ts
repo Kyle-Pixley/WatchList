@@ -60,6 +60,14 @@ window.addEventListener("DOMContentLoaded", () => {
     form.dispatchEvent(new Event("submit", {cancelable: true}));
 });
 
+// if movie.something returns a value of "N/A" (still a truthy value) it will render nothing so these 2 functions make sure the element on the page will not render if value is "N/A"
+function displayText(element: HTMLElement | null, value: string) {
+    if (element) element.textContent = (value && value !== "N/A") ? value: "";
+}
+// If poster src = "N/A" displays a default image from assets folder
+function displaySrc(img: HTMLImageElement | null, value: string) {
+    if (img) img.src = (value && value !== "N/A") ? value : "/assets/no-poster.htm";
+}
 
 const form = $('#search-form') as HTMLFormElement;
 //renders new movie when form is submited 
@@ -67,15 +75,6 @@ form.addEventListener("submit", function(e) {
     e.preventDefault();
 fetchMovie()
         .then(movie => {
-            console.log("Movie:", movie);
-
-            // if movie.something returns a value of "N/A" (still a truthy value) it will render nothing
-            function displayText(element: HTMLElement | null, value: string) {
-                if (element) element.textContent = (value && value !== "N/A") ? value: "";
-            }
-            function displaySrc(img: HTMLImageElement | null, value: string) {
-                if (img) img.src = (value && value !== "N/A") ? value : "/assets/no-poster.htm";
-            }
 
             displayText(movieTitle, movie.Title);
             displayText(movieYear, movie.Year);
@@ -109,7 +108,14 @@ fetchMovie()
 
         })
         .catch(err => {
-            console.error("error in fetch" , err)
+            directedBy.textContent = "";
+            writtenBy.textContent = "";
+            starring.textContent = "";
+            displayText(movieTitle, 'Movie Not Found');
+            displayText(movieRated, "N/A");
+            displayText(moviePlot, "Please double check the spelling and the year.");
+            displaySrc(moviePoster, "N/A");
+            console.error("error in fetch" , err);
         });
 })
 
@@ -124,8 +130,12 @@ const movieYear = $('#year') as HTMLHeadingElement;
 const movieRated = $('#rated') as HTMLHeadingElement;
 const moviePlot = $("#plot") as HTMLParagraphElement;
 const moviePoster = $("#poster") as HTMLImageElement;
+
+const directedBy =$('#directed-by') as HTMLParagraphElement;
 const movieDirector = $('#director') as HTMLParagraphElement;
+const writtenBy = $("#written-by") as HTMLParagraphElement;
 const movieWriter = $('#writer') as HTMLParagraphElement;
+const starring = $("#starring") as HTMLParagraphElement;
 const movieActors = $('#actors') as HTMLParagraphElement;
 
 //movie ratings from array of Rating
@@ -209,7 +219,7 @@ function chooseMovieBackground(mg: string) {
         form.classList.add("text-amber-100");
         searchIcon.classList.add("invert");
         footer.classList.add("text-amber-100")
-    } else if (mg.includes("Fantasy")) {
+    } else if (mg.includes("Fantasy") || mg.includes("Adventure")) {
         pageBody.classList.add("bg-[url('/assets/adventure-background.jpg')]");
         contentSection.classList.remove("bg-amber-50/20");
     } else if (mg.includes("Sci-Fi")) {
@@ -231,5 +241,4 @@ function chooseMovieBackground(mg: string) {
         searchIcon.classList.add("invert");
         contentSection.classList.remove("bg-amber-50/20");
     }
-    console.log(pageBody.classList)
 }
